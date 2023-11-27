@@ -30,7 +30,7 @@ function generateId() {
 }
 
 function makeBook(bookObject) {
-  const { id, title, author, year, isCompleted } = bookObject;
+  const { id, title, author, year, isComplete } = bookObject;
   const bookTitleElement = document.createElement("h3");
   bookTitleElement.innerText = title;
 
@@ -56,7 +56,7 @@ function makeBook(bookObject) {
   });
   trashButton.innerText = "Hapus buku";
 
-  if (isCompleted) {
+  if (isComplete) {
     undoButton.innerText = " Belum selesai di Baca";
   } else {
     undoButton.innerText = "Selesai dibaca";
@@ -79,7 +79,7 @@ function pindahBuku(bookId /* HTMLELement */) {
   const bookTarget = findBook(bookId);
   if (bookTarget == null) return;
 
-  bookTarget.isCompleted = !bookTarget.isCompleted;
+  bookTarget.isComplete = !bookTarget.isComplete;
   document.dispatchEvent(new Event(RENDER_EVENT));
   updateDataToStorage();
 }
@@ -105,7 +105,7 @@ document.addEventListener(RENDER_EVENT, function () {
   for (const bookItem of books) {
     console.log(bookItem);
     const bookElement = makeBook(bookItem);
-    if (bookItem.isCompleted) {
+    if (bookItem.isComplete) {
       listCompleted.append(bookElement);
     } else {
       incompletedBookList.append(bookElement);
