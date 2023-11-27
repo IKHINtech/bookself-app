@@ -15,7 +15,7 @@ function addBook() {
     generatedID,
     bookTitle,
     bookAuthor,
-    bookYear,
+    parseInt(bookYear),
     isComplete
   );
 
